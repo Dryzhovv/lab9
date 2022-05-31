@@ -156,3 +156,11 @@ def add_flights_routes(request: HttpRequest) -> HttpResponse:
         'form': form,
         'submitted': submitted,
     })
+
+
+def view_route_page(request: HttpRequest, route_id: int) -> HttpResponse:
+    route = Flight.objects.get(id=route_id)
+
+    return render(request, 'view_plane_page.html', {
+        "route": route,
+    })

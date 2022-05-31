@@ -11,7 +11,8 @@
                 Enter paginataion limit:
                 <p></p>
                 <label>
-                    <input type="number" value="3" name="limit" type="number" onkeypress="return event.charCode >= 48" min="1">
+                    <input type="number" value="3" name="limit" type="number" onkeypress="return event.charCode >= 48"
+                           min="1">
                 </label>
             </div>
             <br/>
@@ -28,6 +29,8 @@
             <th>date</th>
 
             <th>name</th>
+
+            <th>update</th>
         </tr>
 
         {% for object in flights %}
@@ -39,6 +42,10 @@
                 <td>{{ object.date }}</td>
 
                 <td>{{ object.name }}</td>
+
+                <td style="text-align: right">
+                    <a href="{% url 'view_route_page' object.id %}">Update</a>
+                </td>
             </tr>
         {% endfor %}
     </table>

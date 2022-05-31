@@ -27,4 +27,5 @@ urlpatterns = [
     path('password_success/', views.password_success, name='password_success'),
     path('add_plane/', views.add_plane, name='add_plane'),
     path('add_flights_routes/', views.add_flights_routes, name='add_flights_routes'),
+    path('view_route_page/<route_id>', views.view_route_page, name='view_route_page'),
 ]
