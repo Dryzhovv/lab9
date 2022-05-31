@@ -1,14 +1,10 @@
-from typing import Type
-
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-
 from django.contrib.auth.forms import CreateUserForm, PasswordChangeForm
 from django.contrib.auth.views import PasswordChangeView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-
 # Create your views here.
 from django.urls import reverse_lazy
 
@@ -159,8 +155,20 @@ def add_flights_routes(request: HttpRequest) -> HttpResponse:
 
 
 def view_route_page(request: HttpRequest, route_id: int) -> HttpResponse:
+    """Shows info about particular route"""
     route = Flight.objects.get(id=route_id)
+    form = FlightsRoutes(request.POST or None, instance=route)
+    if form.is_valid():
+        form.save()
+        return redirect('show_flights_routes')
 
     return render(request, 'view_plane_page.html', {
         "route": route,
+        'form': form,
     })
+
+
+def delete_route(request: HttpRequest, route_id: int) -> HttpResponse:
+    route = Flight.objects.get(pk=route_id)
+    route.delete()
+    return redirect('show_flights_routes')

@@ -1,9 +1,7 @@
-from http.client import HTTPResponse
 from typing import Callable
 
 from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpRequest
-from django.shortcuts import redirect
 from django.urls import reverse
 
 
