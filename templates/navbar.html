@@ -1,0 +1,35 @@
+<nav>
+    <input type="checkbox" id="show-search">
+    <input type="checkbox" id="show-menu">
+    <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+    <div class="content">
+        <div class="logo"><a href="/">EasyTables</a></div>
+        <ul class="links">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout_page' %}">Logout</a></li>
+                <li><a href="{% url 'password_change' %}">Change password</a></li>
+                <li>
+                    {% else %}
+                <li><a href="{% url 'login_page' %}">Login</a></li>
+                <li><a href="{% url 'registration_page' %}">Registration</a></li>
+                <li>
+            {% endif %}
+            <a href="#" class="desktop-link">Services</a>
+            <input type="checkbox" id="show-services">
+            <label for="show-services">Services</label>
+            <ul>
+                <li><a href="{% url 'show_planes' %}">Planes</a></li>
+                <li><a href="{% url 'show_flights_routes' %}">Flights routes</a></li>
+                <li><a href="{% url 'add_plane' %}">Add planes</a></li>
+                <li><a href="{% url 'add_flights_routes' %}">Add flights routes</a></li>
+            </ul>
+            </li>
+        </ul>
+    </div>
+    <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+    <form action="#" class="search-box">
+        <input type="text" placeholder="Type Something to Search..." required>
+        <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+    </form>
+</nav>
+

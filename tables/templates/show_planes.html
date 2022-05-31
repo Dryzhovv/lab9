@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Planes{% endblock %}
+
+
+{% block content %}
+
+    <div class="pagination-adjust-form">
+        <form id="form1" method="post">
+            {% csrf_token %}
+            Enter paginataion limit:
+            <p></p>
+            <label>
+                <input type="number" value="3" name="limit" type="number" onkeypress="return event.charCode >= 48"
+                       min="1">
+            </label>
+            <br/>
+        </form>
+        <br/>
+        <button type="submit" form="form1" value="Submit">Submit</button>
+    </div>
+
+    <table>
+        <tr>
+            <th>#</th>
+
+            <th>type</th>
+
+        </tr>
+
+        {% for object in planes %}
+            <tr>
+            <td>{{ object.pk }}</td>
+
+            <td>{{ object.type }}</td>
+
+        {% endfor %}
+    </table>
+
+    {% if planes.has_other_pages %}
+        <div class="paginator-div">
+            <ul class="pagination">
+                {% if planes.has_previous %}
+                    <li><a href="?page={{ planes.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in planes.paginator.page_range %}
+                    {% if planes.number == i %}
+                        <li class="active">{{ i }} <span class="sr-only">(current)</span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if planes.has_next %}
+                    <li><a href="?page={{ planes.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled">&raquo;</li>
+                {% endif %}
+            </ul>
+        </div>
+
+    {% endif %}
+{% endblock %}

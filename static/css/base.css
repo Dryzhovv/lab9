@@ -1,0 +1,18 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.alert-warning {
+    color: rgb(212, 192, 139);
+    background-color: rgb(80, 72, 48);
+    border-color: rgb(121, 104, 58);
+    position: fixed;
+    margin: 1% 45%;
+}
+
+.main-content-wrapper {
+    width: 80%;
+    margin: auto;
+    height: 100%;
+}
